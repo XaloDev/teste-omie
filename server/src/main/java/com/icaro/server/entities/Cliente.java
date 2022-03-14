@@ -22,7 +22,7 @@ public class Cliente implements Serializable {
     private Integer status;
     private String foto;
 
-    @OneToMany(mappedBy = "cliente")
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.REMOVE)
     private List<Email> emails = new ArrayList<>();
 
     public Cliente() {

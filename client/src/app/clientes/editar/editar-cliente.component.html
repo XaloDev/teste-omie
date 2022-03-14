@@ -1,0 +1,173 @@
+<h1>Editar cliente</h1>
+
+<div class="well">
+
+
+  <form
+    class="row"
+    #formCliente="ngForm">
+    <img
+      class="col-lg-2 col-md-4 col-sm-6 col-xs-12 img-thumbnail"
+      src="{{cliente.foto}}"
+      alt="Foto do cliente"/>
+    <div class="col-lg-10 col-md-8 col-sm-6 col-xs-12">
+      <div class="form-group">
+        <label for="inscricao">Inscrição:</label>
+        <input
+          [(ngModel)]="cliente.inscricao"
+          #inscricao="ngModel"
+          type="text"
+          class="form-control"
+          id="inscricao"
+          name="inscricao"
+          placeholder="00.000.000/0000-00"
+          mask="00.000.000/0000-00"
+          pattern="[0-9]{14}"
+          required>
+        <div
+          *ngIf="inscricao.errors && (inscricao.dirty || inscricao.touched)"
+          class="alert alert-danger">
+          <div [hidden]="!inscricao.errors.required">
+            Digite a inscrição.
+          </div>
+          <div [hidden]="!inscricao.errors.pattern">
+            A inscrição deve conter 14 números.
+          </div>
+        </div>
+        <label for="Apelido">Apelido:</label>
+        <input
+          [(ngModel)]="cliente.apelido"
+          #apelido="ngModel"
+          type="text"
+          class="form-control"
+          id="Apelido"
+          name="Apelido"
+          minlength="3"
+          placeholder="Apelido"
+          required>
+        <div
+          *ngIf="apelido.errors && (apelido.dirty || apelido.touched)"
+          class="alert alert-danger">
+          <div [hidden]="!apelido.errors.required">
+            Digite o Apelido.
+          </div>
+          <div [hidden]="!apelido.errors.minlength">
+            O Apelido deve conter ao menos 3 caracteres.
+          </div>
+        </div>
+        <label for="nome">Nome:</label>
+        <input
+          [(ngModel)]="cliente.nome"
+          #nome="ngModel"
+          type="text"
+          class="form-control"
+          id="nome"
+          name="nome"
+          minlength="3"
+          placeholder="Nome"
+          required>
+        <div
+          *ngIf="nome.errors && (nome.dirty || nome.touched)"
+          class="alert alert-danger">
+          <div [hidden]="!nome.errors.required">
+            Digite o Nome.
+          </div>
+          <div [hidden]="!nome.errors.minlength">
+            O nome deve conter ao menos 3 caracteres.
+          </div>
+        </div>
+        <label for="foto">URL da foto:</label>
+        <input
+          [(ngModel)]="cliente.foto"
+          #foto="ngModel"
+          type="url"
+          class="form-control"
+          id="foto"
+          name="foto"
+          placeholder="https://example.com/example.png"
+          pattern="^.*(?<=.jpg|.jpeg|.png|.webp|.avif|.gif|.svg)$"
+          required>
+        <div
+          *ngIf="foto.errors && (foto.dirty || foto.touched)"
+          class="alert alert-danger">
+          <div [hidden]="!foto.errors.required">
+            Digite a URL da foto.
+          </div>
+          <div [hidden]="!foto.errors.pattern">
+            A URL deve ser de uma foto.
+          </div>
+        </div>
+        <label for="status">Status:</label>
+        <select
+          [(ngModel)]="cliente.status"
+          #status="ngModel"
+          id="status"
+          name="status"
+          required
+          class="form-control">
+          <option>ATIVADO</option>
+          <option>DESATIVADO</option>
+          <option>SUSPENSO</option>
+
+        </select>
+        <div
+          *ngIf="status.errors && (status.dirty || status.touched)"
+          class="alert alert-danger">
+          <div [hidden]="!status.errors.required">
+            Escolha um Status.
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="form-group text-center">
+      <input
+        [disabled]="!formCliente.form.valid"
+        (click)="editar()"
+        type="submit"
+        class="btn btn-success"
+        style="margin-right: 5px"
+        value="Editar">
+      <button
+        (click)="mudarVisibilidadeDoModal()"
+        style="margin-right: 5px"
+        class="btn btn-danger"> Deletar
+      </button>
+      <a
+        [routerLink]="['/clientes/listar']"
+        class="btn btn-default">
+      <span class="glyphicon glyphicon-chevron-left"
+            aria-hidden="true"></span> Voltar
+      </a>
+    </div>
+
+
+  </form>
+
+
+
+  <div
+    (click)="mudarVisibilidadeDoModal()"
+    [hidden]="!modalVisivel"
+    class="custom-modal-overlay"></div>
+  <div
+    class="custom-modal"
+    [hidden]="!modalVisivel">
+
+    <div class="custom-modal-title">
+      Excluir
+    </div>
+    <div class="custom-modal-content">
+      Tem certeza que deseja excluir o cliente "{{cliente.nome}}"?
+    </div>
+    <div class="custom-modal-footer">
+      <button
+        class="btn btn-default"
+        (click)="mudarVisibilidadeDoModal()">Fechar</button>
+      <button
+        class="btn btn-danger"
+        (click)="remover()">Excluir</button>
+    </div>
+  </div>
+
+</div>

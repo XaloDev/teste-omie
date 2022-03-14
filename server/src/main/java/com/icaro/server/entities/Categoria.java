@@ -19,7 +19,7 @@ public class Categoria implements Serializable {
     private String nome;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "categoria")
+    @OneToMany(mappedBy = "categoria", cascade = CascadeType.REMOVE)
     private List<Email> emails = new ArrayList<>();
 
     public Categoria() {

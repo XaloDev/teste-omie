@@ -1,1 +1,63 @@
 /* You can add global styles to this file, and also import other style files */
+
+.custom-modal-overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #00000077;
+  z-index: 2;
+}
+.custom-modal {
+  z-index: 3;
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  @media (max-width: 500px) {
+    width: 96%;
+  }
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  background: white;
+
+
+
+  .custom-modal-title {
+    width: 100%;
+    padding: 10px;
+    padding-top: 15px;
+    font-size: 18px;
+
+    color: rgba(0, 0, 0, 0.85);
+
+  }
+
+  .custom-modal-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0;
+    box-shadow: unset;
+    padding: 25px 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-left: 0;
+    border-right: 0;
+    color: rgba(0, 0, 0, 0.7);
+  }
+
+  .custom-modal-footer {
+    border: 0;
+    padding: 10px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 5px;
+  }
+}
+
+

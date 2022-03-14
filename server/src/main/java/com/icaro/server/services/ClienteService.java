@@ -59,6 +59,7 @@ public class ClienteService {
         entity.setInscricao(obj.getInscricao());
         entity.setNome(obj.getNome());
         entity.setStatus(obj.getStatus());
+        entity.setFoto(obj.getFoto());
     }
 
 }
