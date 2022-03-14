@@ -18,6 +18,7 @@ export class ListarClienteComponent implements OnInit {
   paginatedCliente: PaginatedCliente;
   pages: number[] = [];
   size: number = 5;
+  loading: boolean = false;
 
   constructor(private clienteService: ClienteService) { }
 
@@ -26,6 +27,7 @@ export class ListarClienteComponent implements OnInit {
   }
 
   listarTodos(options?: PaginationOptions): void {
+    this.loading = true;
     if(options.page + 1 > this.paginatedCliente?.totalPages){
       if(options.page !== 0){
         options.page--;
@@ -46,6 +48,7 @@ export class ListarClienteComponent implements OnInit {
         for (let i = 1; i <= paginatedCliente.totalPages; i++) {
           this.pages.push(i);
         }
+        this.loading = false;
       });
   }
 
