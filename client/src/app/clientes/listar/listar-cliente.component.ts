@@ -1,26 +1,57 @@
 import { Component, OnInit } from '@angular/core';
-import {Cliente, ClienteService, PaginatedCliente} from "../shared";
+import { ClienteService, PaginatedCliente} from "../shared";
+
+interface PaginationOptions {
+  size?: number,
+  page?: number
+}
 
 @Component({
   selector: 'app-listar-cliente',
   templateUrl: './listar-cliente.component.html',
   styleUrls: ['./listar-cliente.component.scss']
 })
+
 export class ListarClienteComponent implements OnInit {
 
-  clientes: Cliente[] = [];
+
+  paginatedCliente: PaginatedCliente;
+  pages: number[] = [];
+  size: number = 5;
 
   constructor(private clienteService: ClienteService) { }
 
   ngOnInit(): void {
-    this.listarTodos();
+    this.listarTodos({size: this.size, page: 0});
   }
 
-  listarTodos(): void {
-    this.clienteService.listarTodos()
-      .subscribe((data: PaginatedCliente) => {
-        this.clientes = data.content;
+  listarTodos(options?: PaginationOptions): void {
+    if(options.page + 1 > this.paginatedCliente?.totalPages){
+      if(options.page !== 0){
+        options.page--;
+      }
+    }
+    if (options.page < 0) {
+      options.page = 0;
+    }
+
+    if ((options.page === this.paginatedCliente?.number) && (this.paginatedCliente?.size === this.size)) {
+      return
+    }
+    this.clienteService.listarTodos(options)
+      .subscribe((paginatedCliente: PaginatedCliente) => {
+        this.paginatedCliente = paginatedCliente;
+        this.size = paginatedCliente.size
+        this.pages = []
+        for (let i = 1; i <= paginatedCliente.totalPages; i++) {
+          this.pages.push(i);
+        }
       });
+  }
+
+  onChangeSize(event){
+    this.size = +event.target.value
+    this.listarTodos({size: this.size, page: 0})
   }
 
 }

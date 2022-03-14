@@ -32,15 +32,3 @@ export class PaginatedCliente {
   ) {
   }
 }
-
-//offset: 0
-// pageNumber: 0
-// pageSize: 20
-// paged: true
-// sort: {empty: true, sorted: false, unsorted: true}
-// unpaged
-
-sort:
-  empty: true
-sorted: false
-unsorted: true

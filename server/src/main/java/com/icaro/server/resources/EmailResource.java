@@ -18,8 +18,8 @@ public class EmailResource {
     private EmailService service;
 
     @GetMapping
-    public ResponseEntity<List<Email>> findAll() {
-        List<Email> list = service.findAll();
+    public ResponseEntity<List<Email>> findAll(@RequestParam(value = "clienteId", required = false) Long clienteId) {
+        List<Email> list = service.findAll(clienteId);
 
         return ResponseEntity.ok().body(list);
     }

@@ -16,7 +16,7 @@
       </a>
     </th>
   </tr>
-  <tr *ngFor="let cliente of clientes">
+  <tr *ngFor="let cliente of paginatedCliente?.content">
     <td>
       <span>{{cliente.inscricao | mask: '00.000.000/0000-00'}}</span>
 
@@ -43,4 +43,43 @@
   </tbody>
 </table>
 
-<p *ngIf="clientes.length < 1">Nenhum cliente cadastrado.</p>
+<p *ngIf="paginatedCliente?.content.length < 1">Nenhum cliente cadastrado.</p>
+
+
+  <div class="row-pagination">
+
+    <nav aria-label="Page navigation">
+      <ul class="pagination pagination-lg  col-lg-6">
+        <li [class.disabled]="paginatedCliente?.first">
+          <a
+            aria-label="Previous"
+            (click)="listarTodos({page: paginatedCliente?.number - 1, size: paginatedCliente?.size})">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li *ngFor="let page of pages">
+          <a (click)="listarTodos({page: page - 1, size: paginatedCliente?.size})">{{page}}</a>
+        </li>
+        <li [class.disabled]="paginatedCliente?.last">
+          <a
+            aria-label="Next"
+            (click)="listarTodos({page: paginatedCliente?.number + 1, size: paginatedCliente?.size})">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <select
+      [(ngModel)]="size"
+      (change)="onChangeSize($event)"
+      class="form-control col-lg-6"
+    >
+      <option>5</option>
+      <option>10</option>
+      <option>20</option>
+
+    </select>
+
+
+  </div>
+

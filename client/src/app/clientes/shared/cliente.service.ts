@@ -3,24 +3,29 @@ import {Cliente, PaginatedCliente} from "./";
 import { HttpClient } from "@angular/common/http";
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import {Constants} from "../../../environments/constants";
+
+interface PaginationOptions {
+  size?: number,
+  page?: number
+}
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class ClienteService {
 
-  clientesUrl = 'http://localhost:8080/clientes';
+  clientesUrl = Constants.CLIENTES_PATH;
 
 
   constructor(private http: HttpClient) { }
 
-  listarTodos(): Observable<PaginatedCliente> {
-    return this.http.get<PaginatedCliente>(this.clientesUrl);
-  }
-
-  listarTodoss(): Cliente[] {
-    const clientes = localStorage['clientes'];
-    return clientes ? JSON.parse(clientes) : [];
+  listarTodos(options?: PaginationOptions): Observable<PaginatedCliente> {
+    let requestUrl = this.clientesUrl
+    requestUrl = requestUrl + "?size=" + (typeof options.size === 'number' ? options.size.toString() : '')
+    requestUrl = requestUrl + "&page=" + (typeof options.page === 'number' ? options.page.toString() : '')
+    return this.http.get<PaginatedCliente>(requestUrl);
   }
 
   cadastrar(cliente: Cliente): Observable<Cliente> {

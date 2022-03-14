@@ -6,21 +6,21 @@ import { AppComponent } from './app.component';
 import { ClientesModule } from "./clientes";
 import { HttpClientModule } from '@angular/common/http';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
-import { ListarComponent } from './emails/listar/listar.component'
+import {EmailsModule} from "./emails";
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ListarComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     ClientesModule,
+    EmailsModule,
     NgxMaskModule.forRoot()
   ],
   providers: [],

@@ -8,6 +8,8 @@ import { ListarClienteComponent } from './listar';
 import { CadastrarClienteComponent } from './cadastrar';
 import { EditarClienteComponent } from './editar';
 import { NgxMaskModule } from "ngx-mask";
+import { EmailsModule } from "../emails";
+import {CategoriaModule} from "../categorias";
 
 @NgModule({
   declarations: [
@@ -15,12 +17,14 @@ import { NgxMaskModule } from "ngx-mask";
     CadastrarClienteComponent,
     EditarClienteComponent
   ],
-    imports: [
-        CommonModule,
-        RouterModule,
-        FormsModule,
-        NgxMaskModule
-    ],
+  imports: [
+    CommonModule,
+    RouterModule,
+    FormsModule,
+    NgxMaskModule,
+    EmailsModule,
+    CategoriaModule
+  ],
   providers: [
     ClienteService
   ]

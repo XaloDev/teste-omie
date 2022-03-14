@@ -12,7 +12,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -61,5 +60,4 @@ public class ClienteService {
         entity.setStatus(obj.getStatus());
         entity.setFoto(obj.getFoto());
     }
-
 }

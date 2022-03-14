@@ -1,3 +1,5 @@
+import {Email} from "../../emails";
+
 export class Cliente {
 
   constructor(
@@ -7,7 +9,7 @@ export class Cliente {
     public apelido?: string,
     public status?: string,
     public foto?: string,
-    public emails?: any[]
+    public emails?: Email[]
   ) {
   }
 }

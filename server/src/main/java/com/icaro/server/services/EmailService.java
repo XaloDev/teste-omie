@@ -27,8 +27,13 @@ public class EmailService {
     @Autowired
     private CategoriaService categoriaService;
 
-    public List<Email> findAll() {
-        return repository.findAll();
+    public List<Email> findAll(Long clienteId) {
+        System.out.println(clienteId);
+        if (clienteId != null) {
+            return repository.findAllByCliente(clienteId);
+        } else {
+            return repository.findAll();
+        }
     }
 
     public Email findById(Long id) {

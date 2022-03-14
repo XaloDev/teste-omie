@@ -1,0 +1,25 @@
+.row-pagination {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: end;
+  gap: 10px;
+  select {
+    width: min-content;
+  }
+  nav {
+    ul {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      margin: 0;
+      padding: 0;
+
+      li {
+        cursor: pointer;
+      }
+    }
+
+
+  }
+}

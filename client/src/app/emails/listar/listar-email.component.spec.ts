@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListarComponent } from './listar.component';
+import { ListarEmailComponent } from './listar-email.component';
 
-describe('ListarComponent', () => {
-  let component: ListarComponent;
-  let fixture: ComponentFixture<ListarComponent>;
+describe('ListarEmailComponent', () => {
+  let component: ListarEmailComponent;
+  let fixture: ComponentFixture<ListarEmailComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListarComponent ]
+      declarations: [ ListarEmailComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ListarComponent);
+    fixture = TestBed.createComponent(ListarEmailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

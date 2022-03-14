@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {Cliente, ClienteService} from "../shared";
 import {ActivatedRoute, Router} from "@angular/router";
+import {Categoria, CategoriaService} from "../../categorias";
 
 
 @Component({
@@ -14,12 +15,19 @@ export class EditarClienteComponent implements OnInit {
   @ViewChild('formCliente', {static: true}) formCliente: NgForm;
   cliente: Cliente;
 
+  categorias: Categoria[] = []
+
+  categoriaNome: string = ''
+
   modalVisivel: boolean = false;
+
+  listarCategoriaVisivel: boolean = false;
 
   constructor(
     private clienteService: ClienteService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private categoriaService: CategoriaService
   ) { }
 
   ngOnInit(): void {
@@ -50,8 +58,38 @@ export class EditarClienteComponent implements OnInit {
     });
   }
 
+  listarCategorias(){
+    this.categoriaService.listarTodos()
+      .subscribe((categorias: Categoria[]) => {
+        this.categorias = categorias
+      })
+  }
+
   mudarVisibilidadeDoModal(): void {
     this.modalVisivel = !this.modalVisivel;
+  }
+
+  mudarVisibilidadeDoListarCategoria():void {
+    this.categoriaNome = ""
+    if(!this.listarCategoriaVisivel){
+      this.listarCategorias()
+    }
+    this.listarCategoriaVisivel = !this.listarCategoriaVisivel
+  }
+
+  removerCategoria(id: number): void {
+    this.categoriaService.remover(id)
+      .subscribe((data: any) => {
+        this.listarCategorias()
+      })
+  }
+
+  adicionarCategoria(): void {
+    this.categoriaService.cadastrar(new Categoria(null, this.categoriaNome))
+      .subscribe((categoria: Categoria) => {
+        this.categoriaNome = ""
+        this.listarCategorias()
+      })
   }
 
 

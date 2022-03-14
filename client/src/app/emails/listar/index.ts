@@ -1,1 +1,1 @@
-export * from './listar.component'
+export * from './listar-email.component'
