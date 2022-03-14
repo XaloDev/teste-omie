@@ -27,7 +27,7 @@ export class ListarClienteComponent implements OnInit {
   }
 
   listarTodos(options?: PaginationOptions): void {
-    this.loading = true;
+
     if(options.page + 1 > this.paginatedCliente?.totalPages){
       if(options.page !== 0){
         options.page--;
@@ -40,6 +40,7 @@ export class ListarClienteComponent implements OnInit {
     if ((options.page === this.paginatedCliente?.number) && (this.paginatedCliente?.size === this.size)) {
       return
     }
+    this.loading = true;
     this.clienteService.listarTodos(options)
       .subscribe((paginatedCliente: PaginatedCliente) => {
         this.paginatedCliente = paginatedCliente;
