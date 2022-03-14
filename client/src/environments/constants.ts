@@ -1,8 +1,8 @@
-import {isDevMode} from "@angular/core";
+import {environment} from "./environment";
 
 export class Constants{
 
-  public static DB_BASE_URL = isDevMode() ? 'http://localhost:8080/' : 'https://teste-omie-dev.herokuapp.com/';
+  public static DB_BASE_URL = environment.production ? 'https://teste-omie-dev.herokuapp.com/' : 'http://localhost:8080/';
 
   public static CLIENTES_PATH = Constants.DB_BASE_URL + 'clientes'
   public static CATEGORIAS_PATH = Constants.DB_BASE_URL + 'categorias'
