@@ -57,7 +57,7 @@
             <span aria-hidden="true">&laquo;</span>
           </a>
         </li>
-        <li *ngFor="let page of pages">
+        <li *ngFor="let page of pages" [class.active]="(page - 1) === paginatedCliente?.number" >
           <a (click)="listarTodos({page: page - 1, size: paginatedCliente?.size})">{{page}}</a>
         </li>
         <li [class.disabled]="paginatedCliente?.last">
