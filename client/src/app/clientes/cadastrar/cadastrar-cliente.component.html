@@ -85,16 +85,12 @@
           id="foto"
           name="foto"
           placeholder="https://example.com/example.png"
-          pattern="^.*(?<=.jpg|.jpeg|.png|.webp|.avif|.gif|.svg)$"
           required>
         <div
           *ngIf="foto.errors && (foto.dirty || foto.touched)"
           class="alert alert-danger">
           <div [hidden]="!foto.errors.required">
             Digite a URL da foto.
-          </div>
-          <div [hidden]="!foto.errors.pattern">
-            A URL deve ser de uma foto.
           </div>
         </div>
         <label for="status">Status:</label>
