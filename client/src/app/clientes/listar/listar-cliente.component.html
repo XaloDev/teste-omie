@@ -43,7 +43,7 @@
   </tbody>
 </table>
 
-<p *ngIf="paginatedCliente?.content.length < 1">Nenhum cliente cadastrado.</p>
+<p *ngIf="paginatedCliente?.content.length < 1 && !loading">Nenhum cliente cadastrado.</p>
 
 
   <div class="row-pagination">
