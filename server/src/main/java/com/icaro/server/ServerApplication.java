@@ -19,7 +19,7 @@ public class ServerApplication {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:4200", "https://teste-omie.vercel.app/")
+                        .allowedOrigins("http://localhost:4200", "http://localhost:8100", "https://teste-omie.vercel.app/")
                         .allowedMethods("GET", "POST", "PUT", "DELETE");
             }
         };
